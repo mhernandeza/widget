@@ -1,8 +1,12 @@
 package org.margarita.widget.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import twitter4j.Status;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 import org.margarita.widget.model.Tweet;
 
@@ -14,14 +18,31 @@ public class TweetService {
 		
 	}
 
+	//TODO - Add way of storing information, contact Twitter's API every 5 requests.
 	public List<Tweet> getTweets(String screen_name){	
-		//Mock tweets for now.
-		//TODO - replace for code that interacts with Twitter's API.
 		tweets.clear();
-		//Tweet tweet1 = new Tweet(1, new Date(), "test tweet one", "Margarita Hernandez", "profile url 1", screen_name);
-		//Tweet tweet2 = new Tweet(1, new Date(), "test tweet two", "Margarita Hernandez", "profile url 2", screen_name);
-		//tweets.add(tweet1);
-		//tweets.add(tweet2);
+		
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+			.setOAuthConsumerKey("Y5MXQR80ypLHYZhCr1tngfquF")
+			.setOAuthConsumerSecret("5ZwfMNw4j51I0amhvQBTAyd2cFVExxEsN5L567nUOwwiWi2tHx")
+			.setOAuthAccessToken("29823961-pzOUdLOerGQTTjxYP6IFNY47v3Q3eBzCWHNPPBaPt")
+			.setOAuthAccessTokenSecret("yT11MkJDKUfegm6W5NxY1jpkMbLFLQAj52XQ8kbdgP6Fn");
+		
+		TwitterFactory tf = new TwitterFactory(cb.build());
+		twitter4j.Twitter twitter = tf.getInstance();
+		try {
+			List<Status> status = twitter.getUserTimeline(screen_name);
+			//Get text.
+			for(Status s : status){
+				Tweet tweet = new Tweet(s.getId(), s.getCreatedAt(), s.getText(), s.getUser().getName(), s.getUser().getOriginalProfileImageURL(), screen_name);
+				tweets.add(tweet);
+				
+			}
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return tweets;
 	}
 	
