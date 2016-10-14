@@ -44,12 +44,25 @@
             <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
             <!-- artifactId>jersey-container-servlet</artifactId -->
         </dependency>
-        <!-- uncomment this to get JSON support
+        <!--  Gson: Java to Json conversion -->
+    	<dependency>
+      		<groupId>com.google.code.gson</groupId>
+      		<artifactId>gson</artifactId>
+      		<version>2.7</version>
+      		<scope>compile</scope>
+    	</dependency>
+    	<!-- Twitter4J: Java interaction with Twitter API -->
+    	<dependency>
+           <groupId>org.twitter4j</groupId>
+           <artifactId>twitter4j-core</artifactId>
+           <version>[4.0,)</version>
+       </dependency>
+        <!-- Uncomment to get JSON support 
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
-        -->
+         -->
     </dependencies>
     <properties>
         <jersey.version>2.16</jersey.version>
