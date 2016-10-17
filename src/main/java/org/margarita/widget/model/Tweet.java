@@ -2,7 +2,6 @@ package org.margarita.widget.model;
 
 import java.util.Date;
 
-
 public class Tweet {
 	private long id;
 	private Date creationDate;

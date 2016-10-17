@@ -39,6 +39,7 @@ public class TweetService {
 				tweets.add(tweet);
 				
 			}
+			
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
