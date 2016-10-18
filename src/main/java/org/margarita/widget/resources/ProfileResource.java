@@ -25,11 +25,8 @@ public class ProfileResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getProfile(){
 		System.out.println("Request obtained");
-		//TODO - Check addition of user profile as a variable.
-		//Prepares entity.
 		Gson gson = new Gson();
-		String tweetsJson = gson.toJson(tweetService.getTweets("march1307"));
-		
+		String tweetsJson = gson.toJson(tweetService.getTweets("firefreebies"));
 		return tweetsJson;
 	}
 
@@ -38,7 +35,6 @@ public class ProfileResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getProfile(@PathParam("userName") String userName){
 		System.out.println("Request obtained");
-		//TODO - Check addition of user profile as a variable.
 		Gson gson = new Gson();
 		String tweetsJson = gson.toJson(tweetService.getTweets(userName));
 		return tweetsJson;
